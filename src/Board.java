@@ -24,7 +24,6 @@ public class Board extends JComponent implements ComponentListener {
 
     // single iteration
     public void iteration() {
-
         points[runner.x][runner.y] = new Point(0, runner.x, runner.y, centerX, centerY);
         runner.move();
         checkObstacle();
@@ -49,9 +48,9 @@ public class Board extends JComponent implements ComponentListener {
     }
 
     public void reinitialize() {
-        for (int x = 0; x < points.length; ++x)
-            for (int y = 0; y < points[x].length; ++y) {
-                points[x][y].setState(0);
+        for (Point[] point : points)
+            for (Point value : point) {
+                value.setState(0);
             }
         int length = (this.getWidth() / size) + 1;
         int height = (this.getHeight() / size) + 1;
@@ -60,7 +59,6 @@ public class Board extends JComponent implements ComponentListener {
     }
 
     private void initialize(int length, int height) {
-
         this.length = length;
         this.height = height;
         this.centerX = length/2;
@@ -80,10 +78,8 @@ public class Board extends JComponent implements ComponentListener {
         int b;
 
         do {
-
             a = random.nextInt(length);
             b = random.nextInt(height);
-
         } while(points[a][b].getType()!=0);
 
         running = true;
@@ -92,17 +88,14 @@ public class Board extends JComponent implements ComponentListener {
     }
 
     void newRunner(){
-
         Random random = new Random();
 
         int a;
         int b;
 
         do {
-
             a = random.nextInt(length);
             b = random.nextInt(height);
-
         } while(points[a][b].getType()!=0);
 
         runner = new Point(2, a, b, centerX, centerY);
@@ -115,7 +108,6 @@ public class Board extends JComponent implements ComponentListener {
     }
 
     boolean haveNeighbours(Point point){
-
         return (points[point.x - 1][point.y].getType() == 1
                 || points[point.x + 1][point.y].getType() == 1
                 || points[point.x][point.y + 1].getType() == 1
@@ -135,7 +127,6 @@ public class Board extends JComponent implements ComponentListener {
         }
         g.setColor(Color.GRAY);
         drawNetting(g, size);
-
     }
 
     private void drawNetting(Graphics g, int gridSpace) {
@@ -174,9 +165,7 @@ public class Board extends JComponent implements ComponentListener {
 
             }
         }
-
     }
-
 
     public void componentResized(ComponentEvent e) {
         int length = (this.getWidth() / size) + 1;
@@ -192,6 +181,4 @@ public class Board extends JComponent implements ComponentListener {
 
     public void componentHidden(ComponentEvent e) {
     }
-
 }
-//

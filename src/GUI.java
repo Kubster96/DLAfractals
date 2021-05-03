@@ -16,18 +16,15 @@ import javax.swing.event.ChangeListener;
  */
 public class GUI extends JPanel implements ActionListener, ChangeListener {
     private static final long serialVersionUID = 1L;
-    private Timer timer;
+    private final Timer timer;
     private Board board;
     private JButton start;
     private JButton clear;
-    private JFrame frame;
-    private int iterNum = 0;
 
-    private final int initDelay = 0;
     private boolean running = false;
 
     public GUI(Program jf) {
-        frame = jf;
+        int initDelay = 0;
         timer = new Timer(initDelay, this);
         timer.stop();
     }
@@ -55,13 +52,11 @@ public class GUI extends JPanel implements ActionListener, ChangeListener {
         board = new Board(1024, 1024 - buttonPanel.getHeight());
         container.add(board, BorderLayout.CENTER);
         container.add(buttonPanel, BorderLayout.SOUTH);
-
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
-
         if (e.getSource().equals(timer)) {
-            iterNum++;
             board.iteration();
         } else {
             String command = e.getActionCommand();
@@ -77,7 +72,6 @@ public class GUI extends JPanel implements ActionListener, ChangeListener {
                 clear.setEnabled(true);
 
             } else if (command.equals("reinitialize")) {
-                iterNum = 0;
                 timer.stop();
                 start.setEnabled(true);
                 board.reinitialize();
@@ -85,6 +79,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener {
         }
     }
 
+    @Override
     public void stateChanged(ChangeEvent e) {
 
     }

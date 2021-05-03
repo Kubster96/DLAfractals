@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 
@@ -23,33 +21,23 @@ public class Point {
         this.centerY = centerY;
     }
 
-    public void move(){
+    public void move() {
         Random random = new Random();
-//        boolean upDown = random.nextBoolean();
-//        if(upDown){
-//            x = x + random.nextInt(3) - 1;
-//        } else {
-//            y = y + random.nextInt(3) - 1;
-//        }
         x = x + random.nextInt(3) - 1;
         y = y + random.nextInt(3) - 1;
-
     }
 
-    public void useGravity(){
-
-        if(i == gravityPower){
-            if(x - centerX > 0){
+    public void useGravity() {
+        if (i == gravityPower) {
+            if (x - centerX > 0) {
                 x = x - 1;
-            }
-            else if (x - centerX < 0){
+            } else if (x - centerX < 0) {
                 x = x + 1;
             }
 
-            if(y - centerY > 0){
+            if (y - centerY > 0) {
                 y = y - 1;
-            }
-            else if (y - centerY < 0){
+            } else if (y - centerY < 0) {
                 y = y + 1;
             }
             i = 0;
